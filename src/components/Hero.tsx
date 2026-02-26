@@ -9,20 +9,20 @@ export const Hero = () => {
       <div className="max-w-6xl w-full mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
         {/* Left Side - Text Content */}
         <div className="space-y-10">
-          {/* Decorative Line */}
-          <motion.div
-            initial={{ opacity: 0, width: 0 }}
-            animate={{ opacity: 1, width: 48 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="h-1 w-12 bg-[#D4AF37] rounded-full"
-          />
-
           {/* Main Heading */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.9 }}
+            className="relative"
           >
+            {/* Decorative Line above "r" in Your */}
+            <motion.div
+              initial={{ opacity: 0, width: 0 }}
+              animate={{ opacity: 1, width: 48 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+              className="h-1 w-12 bg-[#D4AF37] rounded-full mb-3"
+            />
             <h1 className="text-5xl md:text-7xl font-bold text-[#111111] dark:text-white leading-tight font-serif">
               Own Your <br />
               <span className="text-[#D4AF37]">Tickets.</span>
