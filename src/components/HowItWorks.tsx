@@ -26,9 +26,9 @@ export const HowItWorks = () => {
       {/* Background cleanup - minimal */}
       <div className="absolute inset-0 opacity-0 pointer-events-none" />
 
-      <div className="w-full max-w-3xl mx-auto">
-        {/* Section Header - Centered */}
-        <div className="flex flex-col items-center justify-center text-center mb-24 md:mb-32">
+      <div className="w-full flex flex-col items-center justify-center mx-auto">
+        {/* Section Header - Fully Centered */}
+        <div className="flex flex-col items-center justify-center text-center mb-24 md:mb-32 w-full">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -44,7 +44,7 @@ export const HowItWorks = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.8 }}
             viewport={{ once: true, margin: '-100px' }}
-            className="text-5xl md:text-6xl font-bold text-[#111111] dark:text-white font-serif mb-8 text-center"
+            className="text-5xl md:text-6xl font-bold text-[#111111] dark:text-white font-serif mb-8 text-center max-w-2xl"
           >
             Three Steps to Ownership
           </motion.h2>
@@ -58,15 +58,13 @@ export const HowItWorks = () => {
           />
         </div>
 
-        {/* Vertical Ladder Steps Container */}
-        <div className="relative flex flex-col items-center justify-center space-y-0 mx-auto">
+        {/* Vertical Steps Container - Centered */}
+        <div className="relative flex flex-col items-center justify-center space-y-0 w-full max-w-2xl">
           {/* Central Vertical Connecting Line */}
           <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#D4AF37] via-[#D4AF37] to-transparent opacity-20 dark:opacity-25 transform -translate-x-1/2" />
 
           {/* Steps */}
           {steps.map((step, index) => {
-            const isLeft = index % 2 === 0;
-
             return (
               <motion.div
                 key={index}
@@ -78,73 +76,67 @@ export const HowItWorks = () => {
                   ease: 'easeOut',
                 }}
                 viewport={{ once: true, margin: '-100px' }}
-                className={`relative w-full flex py-12 md:py-16 ${
-                  isLeft ? 'justify-start pl-0 md:pl-0' : 'justify-end pr-0 md:pr-0'
-                }`}
+                className="relative w-full flex items-center justify-center py-12 md:py-16"
               >
-                {/* Step Content Card */}
-                <div className={`flex flex-col items-center text-center max-w-sm px-6 md:px-8 ${
-                  isLeft ? 'md:mr-auto md:ml-0' : 'md:ml-auto md:mr-0'
-                }`}>
-                  {/* Step Number - Large Faded Gold */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{
-                      delay: index * 0.2 + 0.1,
-                      duration: 0.6,
-                    }}
-                    viewport={{ once: true }}
-                    className="mb-4"
-                  >
-                    <p className="text-8xl md:text-9xl font-serif font-bold text-[#D4AF37] dark:text-[#FFD700] opacity-8 dark:opacity-12 leading-none select-none">
+                {/* Step Content - Centered */}
+                <div className="relative flex flex-col items-center text-center max-w-md px-6 md:px-8">
+                  {/* Step Number + Content Row */}
+                  <div className="flex flex-col items-center gap-4 w-full">
+                    {/* Step Number */}
+                    <motion.p
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{
+                        delay: index * 0.2 + 0.1,
+                        duration: 0.6,
+                      }}
+                      viewport={{ once: true }}
+                      className="text-7xl md:text-8xl font-serif font-bold text-[#D4AF37] dark:text-[#FFD700] opacity-8 dark:opacity-12 leading-none select-none"
+                    >
                       {step.number}
-                    </p>
-                  </motion.div>
+                    </motion.p>
 
-                  {/* Step Title - Medium Serif */}
-                  <motion.h3
-                    initial={{ opacity: 0, y: 15 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{
-                      delay: index * 0.2 + 0.15,
-                      duration: 0.6,
-                    }}
-                    viewport={{ once: true }}
-                    className="text-3xl md:text-4xl font-serif font-bold text-[#111111] dark:text-white mb-2"
-                  >
-                    {step.title}
-                  </motion.h3>
+                    {/* Yellow Dot */}
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      transition={{
+                        delay: index * 0.2 + 0.15,
+                        duration: 0.5,
+                      }}
+                      viewport={{ once: true }}
+                      className="w-4 h-4 bg-[#D4AF37] dark:bg-[#FFD700] rounded-full opacity-60"
+                    />
 
-                  {/* Step Subtitle - Small & Minimal */}
-                  <motion.p
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{
-                      delay: index * 0.2 + 0.2,
-                      duration: 0.6,
-                    }}
-                    viewport={{ once: true }}
-                    className="text-sm text-[#999999] dark:text-[#888888] font-light tracking-wide"
-                  >
-                    {step.subtitle}
-                  </motion.p>
+                    {/* Title and Subtitle */}
+                    <div className="flex flex-col items-center">
+                      <motion.h3
+                        initial={{ opacity: 0, y: 15 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{
+                          delay: index * 0.2 + 0.2,
+                          duration: 0.6,
+                        }}
+                        viewport={{ once: true }}
+                        className="text-3xl md:text-4xl font-serif font-bold text-[#111111] dark:text-white mb-2"
+                      >
+                        {step.title}
+                      </motion.h3>
 
-                  {/* Connector Circle to Center Line */}
-                  <motion.div
-                    initial={{ scale: 0, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    transition={{
-                      delay: index * 0.2 + 0.25,
-                      duration: 0.5,
-                    }}
-                    viewport={{ once: true }}
-                    className="absolute top-1/2 w-3.5 h-3.5 bg-[#D4AF37] dark:bg-[#FFD700] rounded-full opacity-40 hidden md:block"
-                    style={{
-                      [isLeft ? 'right' : 'left']: 'calc(-2rem - 1.75px)',
-                      transform: 'translate(0, -50%)',
-                    }}
-                  />
+                      <motion.p
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{
+                          delay: index * 0.2 + 0.25,
+                          duration: 0.6,
+                        }}
+                        viewport={{ once: true }}
+                        className="text-sm text-[#999999] dark:text-[#888888] font-light tracking-wide"
+                      >
+                        {step.subtitle}
+                      </motion.p>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             );

@@ -48,20 +48,20 @@ export const TicketCard = ({ index, total, event = 'LIVE EVENT', date = 'May 15,
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50, scale: 0.9 }}
-      animate={{ opacity: 1, y: isHovered ? -40 : 0, scale: 1 }}
-      transition={{ delay: index * 0.1, duration: 0.7, ease: 'easeOut' }}
+      initial={{ opacity: 0, y: 50, scale: 0.8, rotateY: -30 }}
+      animate={{ opacity: 1, y: isHovered ? -40 : 0, scale: 1, rotateY: isHovered ? 0 : -10 }}
+      transition={{ delay: index * 0.1, duration: 0.8, ease: 'easeOut' }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={handleMouseLeave}
       onMouseMove={handleMouseMove}
       style={{
-        transform: `translateY(${yOffset}px) rotate(${rotation}deg) perspective(1200px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`,
+        transform: `translateY(${yOffset}px) rotate(${rotation}deg) perspective(1500px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) skewY(${isHovered ? 0 : 1}deg)`,
         zIndex: zIndex,
         transformStyle: 'preserve-3d' as any,
       }}
       className="absolute cursor-pointer w-80 h-96 transition-all duration-300"
     >
-      <div
+      <motion.div
         className={`relative w-full h-full border-2 border-[#111111] dark:border-[#D4AF37] bg-white dark:bg-[#0f0f0f] rounded-lg overflow-hidden transition-all duration-500 ${
           isHovered
             ? 'shadow-luxury'
@@ -69,9 +69,14 @@ export const TicketCard = ({ index, total, event = 'LIVE EVENT', date = 'May 15,
         }`}
         style={{
           boxShadow: isHovered 
-            ? '0 20px 60px rgba(212, 175, 55, 0.25), 0 8px 24px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(212, 175, 55, 0.1)' 
-            : '0 8px 32px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(212, 175, 55, 0.05)',
+            ? '0 30px 80px rgba(212, 175, 55, 0.35), 0 12px 36px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(212, 175, 55, 0.15)' 
+            : '0 12px 40px rgba(0, 0, 0, 0.12), 0 6px 20px rgba(212, 175, 55, 0.08)',
+          transformStyle: 'preserve-3d',
         }}
+        animate={{
+          filter: isHovered ? 'brightness(1.05)' : 'brightness(1)',
+        }}
+        transition={{ duration: 0.3 }}
       >
         {/* Premium Holographic Gradient Overlay */}
         <motion.div 
@@ -218,7 +223,17 @@ export const TicketCard = ({ index, total, event = 'LIVE EVENT', date = 'May 15,
             className="absolute inset-0 border-2 border-[#D4AF37] rounded-lg opacity-20 pointer-events-none"
           />
         )}
-      </div>
+
+        {/* 3D Depth Shadow Effect */}
+        <motion.div
+          animate={{
+            opacity: isHovered ? 0.8 : 0.4,
+          }}
+          transition={{ duration: 0.3 }}
+          className="absolute -inset-1 bg-gradient-to-br from-[#D4AF37] to-[#111111] rounded-lg opacity-30 -z-10 blur-lg"
+          style={{ filter: 'blur(10px)' }}
+        />
+      </motion.div>
     </motion.div>
   );
 };
