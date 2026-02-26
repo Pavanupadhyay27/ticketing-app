@@ -4,7 +4,6 @@ import { Navbar } from '@/components/Navbar';
 import { TicketBackground } from '@/components/TicketBackground';
 import { Hero } from '@/components/Hero';
 import { HowItWorks } from '@/components/HowItWorks';
-import { OrganizerSection } from '@/components/OrganizerSection';
 import { Footer } from '@/components/Footer';
 
 export default function Home() {
@@ -23,14 +22,9 @@ export default function Home() {
           <Hero />
         </div>
 
-        {/* How It Works - Maximum spacing */}
-        <div className="pt-80 md:pt-96 pb-32 md:pb-48">
+        {/* How It Works - Right after Hero */}
+        <div className="pt-12 md:pt-16 pb-80 md:pb-96">
           <HowItWorks />
-        </div>
-
-        {/* Organizer Section - Maximum spacing */}
-        <div className="pt-56 md:pt-72 pb-32 md:pb-48">
-          <OrganizerSection />
         </div>
 
         {/* Footer */}
